@@ -26,5 +26,5 @@ export default function useTickets() {
     }
   }, [localStorage.getItem("token")]);
 
-  return [isLoading, ticketList, setTicketList];
+  return [isLoading, ticketList, setTicketList, setIsLoading];
 }

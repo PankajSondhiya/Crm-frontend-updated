@@ -27,7 +27,7 @@ import { AxiosInstance } from "../AxiosInstance/AxiosInstance";
 const Customer = () => {
   const [showCreateTicketModal, setShowCreateTicketModal] = useState(false);
   const [ticketCreationData, setTicketCreationData] = useState({});
-  const [isLoading, ticketList, setTicketList] = useTickets();
+  const [isLoading, ticketList, setTicketList, setIsLoading] = useTickets();
   const [showModal, setShowModal] = useState(false);
   const [ticketDetail, setTicketDetail] = useState({});
 
@@ -37,6 +37,7 @@ const Customer = () => {
 
   const createTicket = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     const data = {
       userId: localStorage.getItem("userid"),
       title: ticketCreationData.title,
@@ -49,6 +50,7 @@ const Customer = () => {
       toast.success("Created a new ticket!");
       setShowCreateTicketModal(false);
       setTicketCreationData({});
+      setIsLoading(false);
     } catch (ex) {
       toast.error("Error while creating a new ticket!");
     }
@@ -183,8 +185,8 @@ const Customer = () => {
           >
             Close
           </Button>
-          <Button variant="primary" onClick={createTicket}>
-            Create
+          <Button variant="primary" onClick={createTicket} disabled={isLoading}>
+            {isLoading ? <Loader /> : "Create"}
           </Button>
         </ModalFooter>
       </Modal>
