@@ -62,6 +62,7 @@ const Admin = () => {
       setLoading(false);
       SetshowUserModal(false);
     } catch (ex) {
+      SetshowUserModal(false);
       toast.error(
         "Error occured while updating user details. Please try again in a minute."
       );

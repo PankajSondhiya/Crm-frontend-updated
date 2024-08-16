@@ -34,6 +34,8 @@ const UpdateTicketModal = ({
       );
       setLoading(false);
     } catch (ex) {
+      setLoading(true);
+
       toast.error("Error while updating the ticket details.");
     }
   };

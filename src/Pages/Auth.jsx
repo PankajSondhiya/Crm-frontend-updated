@@ -28,8 +28,7 @@ const Auth = () => {
     password: "",
   };
 
-  const { firebaseSignUp, firebaseSignIn, sendVerficationEmail } =
-    useFirebase();
+  const { firebaseSignIn, sendVerficationEmail } = useFirebase();
 
   const [LoginFormValues, setLoginFormValues] = useState(
     initialLoginFormValues
@@ -70,6 +69,7 @@ const Auth = () => {
       toast.success("Login Successfull");
       setIsLoading(true);
     } catch (ex) {
+      setIsLoading(false);
       toast.error(ex.response.data.message);
       seterrorMessage(ex.response.data.message);
     }
@@ -90,6 +90,7 @@ const Auth = () => {
       toast.success("Sign-up successful please login to continue");
       setIsLoading(false);
     } catch (ex) {
+      setIsLoading(false);
       toast.error(ex.response.data.message);
       seterrorMessage(ex.response.data.message);
     }

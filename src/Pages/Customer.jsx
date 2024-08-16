@@ -52,6 +52,7 @@ const Customer = () => {
       setTicketCreationData({});
       setIsLoading(false);
     } catch (ex) {
+      setIsLoading(false);
       toast.error("Error while creating a new ticket!");
     }
   };
